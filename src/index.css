@@ -1,0 +1,10 @@
+body{
+    display:flex;
+    background:#ffflaz;
+}
+#content{
+    width:200px;
+    height:200px;
+    margin:100px auto;
+    background:red;
+}

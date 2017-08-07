@@ -1,0 +1,14 @@
+body{
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    background:#ffflaz;
+}
+#content{
+    width:200px;
+    height:200px;
+    margin:100px auto;
+    background:red;
+}
+
+/*# sourceMappingURL=maps/index.css.map */
