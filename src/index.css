@@ -1,9 +1,21 @@
+:root{
+    --fullsize:100%;
+    --white:#fff;
+}
+@define-mixin fontstyle $size, $color {
+    font-size: $(size)px;
+    font-size: calc($size/16)rem;
+    color: $color;
+}
 body{
     display:flex;
-    background:#1114124124;
+    color:var(--white);
+}
+h3{
+    @mixin fontstyle 32, #fff;
 }
 #content{
-    width:500px;
+    width:var(--fullsize);
     text-align:center;
     height:500px;
     font-size:24px;

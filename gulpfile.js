@@ -2,27 +2,44 @@ const gulp = require("gulp");
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
 const sourcemaps = require("gulp-sourcemaps");
-const cssnano = require("cssnano");
 const rename = require("gulp-rename");
 const stylelint = require("stylelint");
+const cssvariables = require("postcss-css-variables");
+const cssnano = require("cssnano");
 const reporter = require("postcss-reporter");
+const cssmixins = require("postcss-mixins");
+const calc = require('postcss-calc');
+//
+//postcss([
+//    cssvariables({
+//        variables:{
+//            '-foo-var': {'100px',isImportant:true},
+//            '--other-var':{value:'#00cc00'},
+//            '--important-var':{value:'#ffcc00'}
+//        }
+//    })
+//])
+//.process(css,opts)
 
-gulp.task('style', function(){
+gulp.task('autoprefixer', function(){
     return gulp.src("./src/*.css")
-    .pipe(postcss([autoprefixer]))
-    .pipe(sourcemaps.init())
-    .pipe(sourcemaps.write('maps/'))
+    .pipe(postcss([
+        autoprefixer,
+        cssnano,
+        cssvariables(/* options */),
+        cssmixins(/* options */),
+        calc(/* options */)
+    ]))
     .pipe(gulp.dest('dest/'));
 })
-gulp.task('rename', ['style'], function(){
+gulp.task('rename', ['autoprefixer'], function(){
     return gulp.src("dest/index.css")
-    .pipe(postcss([cssnano]))
     .pipe(rename('index.min.css'))
     .pipe(sourcemaps.init())
     .pipe(sourcemaps.write('maps/'))
     .pipe(gulp.dest("dest/"))
 })
-gulp.task("lint-style", function(){
+gulp.task("lint-style",function(){
     return gulp.src("src/*.css")
     .pipe(
         postcss([stylelint(
