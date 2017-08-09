@@ -2,17 +2,16 @@
     --fullsize:100%;
     --white:#fff;
 }
-@define-mixin fontstyle $size, $color {
-    font-size: $(size)px;
-    font-size: calc($size/16)rem;
-    color: $color;
+@define-mixin fontstyle{
+    p {
+        color: red;
+    }
 }
+@mixin fontstyle;
+
 body{
     display:flex;
     color:var(--white);
-}
-h3{
-    @mixin fontstyle 32, #fff;
 }
 #content{
     width:var(--fullsize);

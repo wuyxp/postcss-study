@@ -9,26 +9,15 @@ const cssnano = require("cssnano");
 const reporter = require("postcss-reporter");
 const cssmixins = require("postcss-mixins");
 const calc = require('postcss-calc');
-//
-//postcss([
-//    cssvariables({
-//        variables:{
-//            '-foo-var': {'100px',isImportant:true},
-//            '--other-var':{value:'#00cc00'},
-//            '--important-var':{value:'#ffcc00'}
-//        }
-//    })
-//])
-//.process(css,opts)
 
 gulp.task('autoprefixer', function(){
     return gulp.src("./src/*.css")
     .pipe(postcss([
+        cssmixins(/* options */),
+        cssvariables(/* options */),
+        calc(/* options */),
         autoprefixer,
         cssnano,
-        cssvariables(/* options */),
-        cssmixins(/* options */),
-        calc(/* options */)
     ]))
     .pipe(gulp.dest('dest/'));
 })
