@@ -9,6 +9,7 @@ const cssnano = require("cssnano");
 const reporter = require("postcss-reporter");
 const cssmixins = require("postcss-mixins");
 const calc = require('postcss-calc');
+const nesting = require('postcss-nesting');
 
 gulp.task('autoprefixer', function(){
     return gulp.src("./src/*.css")
@@ -18,6 +19,7 @@ gulp.task('autoprefixer', function(){
         calc(/* options */),
         autoprefixer,
         cssnano,
+        nesting({/* options */}),
     ]))
     .pipe(gulp.dest('dest/'));
 })

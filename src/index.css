@@ -13,6 +13,15 @@ body{
     display:flex;
     color:var(--white);
 }
+.box{
+    width:50px;
+    @nest & h2{
+        width:10px;
+    }
+    & h3{
+        width:5px;
+    }
+}
 #content{
     width:var(--fullsize);
     text-align:center;
